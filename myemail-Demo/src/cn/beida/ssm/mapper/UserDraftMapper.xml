@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 不写会报错 -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.beida.ssm.dao.UserDraftmapper">
+    <insert id="savedraft" parameterType="Draft" useGeneratedKeys="true" keyProperty="did">
+    insert into userdraft(drecipient,dtheme,dcon,deid,ddata) values(#{drecipient}, #{dtheme}, #{dcon}, #{deid},#{ddata})
+    </insert>
+    
+    <select id="inquireDraft" parameterType="java.lang.Integer" resultMap="Draftlist">
+    select  drecipient,dtheme,ddata from userdraft where deid = #{deid}
+    </select>
+    <resultMap type="Draft" id="Draftlist">
+    <result property="drecipient" column="drecipient"/>
+    <result property="dtheme" column="dtheme"/>
+    <result property="ddata" column="ddata"/>
+    </resultMap>
+    
+</mapper>

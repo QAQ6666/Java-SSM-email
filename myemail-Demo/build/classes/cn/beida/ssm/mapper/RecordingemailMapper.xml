@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.beida.ssm.dao.Recordingemailmapper">
+<!--
+    <insert id="saveUser" parameterType="UserEntity">
+    <selectKey keyColumn="uid" keyProperty="uid" order="AFTER" resultType="int">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into user (username,upwd,uphone) values (#{username},#{upwd},#{uphone})
+         selectkey 标签是实现主键返回
+         keycolumn:主键 对应的表中的哪一列 
+         keyproperty 主键对应的pojo中的哪一个属性 
+         order: 设置在执行insert 语句前执行查询id的sql，或者在执行之后查询id的sql 
+    </insert>
+    <resultMap type="UserEntity" id="userList">
+    <result property="uphone" column="uphone"/>
+    </resultMap>
+    -->
+    
+    <insert id="saveEmail" parameterType="Recordingemail">
+         insert into recordingemail (rdate,rtext,rtheme,rminfilename,rminfile,rbigfile,eid) values (#{rdate},#{rtext},#{rtheme},#{rminfilename},#{rminfile},#{rbigfile},#{eid})
+    </insert>
+    <!-- 查询用户大概性发送记录 -->
+    <select id="seleRecording" resultMap="resultRe">
+        select rid,rdate,rtheme,rbigfile,rminfilename from recordingemail  where eid = #{id} limit 5
+    </select>
+    <resultMap type="Recordingemail" id="resultRe">
+    <id property="rid" column="rid"/>
+    <result property="rdate" column="rdate"/>
+    <result property="rtheme" column="rtheme"/>
+    <result property="rbigfile" column="rbigfile"/>
+    <result property="rminfilename" column="rminfilename"/>
+    </resultMap>
+    <!-- 查询用户清晰的发送记录 -->
+    <select id="seleRecordall" resultMap="returnReall">
+        select rdate,rtext,rtheme,rbigfile,rminfilename,rminfile from recordingemail where rid = #{rid} and eid = #{eid}
+    </select>
+     <resultMap type="Recordingemail" id="returnReall">
+    <id property="rid" column="rid"/>
+    <result property="rdate" column="rdate"/>
+    <result property="rtext" column="rtext"/>
+    <result property="rtheme" column="rtheme"/>
+    <result property="rminfile" column="rminfile"/>
+    <result property="rbigfile" column="rbigfile"/>
+    <result property="rminfilename" column="rminfilename"/>
+    </resultMap>
+    
+</mapper>

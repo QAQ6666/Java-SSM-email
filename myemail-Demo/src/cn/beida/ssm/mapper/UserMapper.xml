@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 不写会报错 -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.beida.ssm.dao.Usermapper">
+
+	<!-- <insert id="saveUser" parameterType="UserEntity"> <selectKey keyColumn="uid" 
+		keyProperty="uid" order="AFTER" resultType="int"> SELECT LAST_INSERT_ID() 
+		</selectKey> insert into user (username,upwd,uphone) values (#{username},#{upwd},#{uphone}) 
+		selectkey 标签是实现主键返回 -->
+	<!-- keycolumn:主键 对应的表中的哪一列 -->
+	<!-- keyproperty 主键对应的pojo中的哪一个属性 -->
+	<!-- order: 设置在执行insert 语句前执行查询id的sql，或者在执行之后查询id的sql </insert> -->
+    <!-- 查询所有客户 -->
+	<resultMap type="User" id="userList">
+		<result property="uname" column="uname" />
+		<result property="upwd" column="upwd" />
+		<result property="eid" column="eid" />
+	</resultMap>
+	<select id="alluser" resultMap="userList">
+		select * from user
+	</select>
+    <!-- 登录查询 -->
+    <select id="loginto" resultType="User" parameterType="java.util.Map">
+    select uid,uname,upwd from user where uname = #{name} and upwd = #{pwd}
+    </select>
+    <!-- 注册录入数据 -->
+    <insert id="saveUser" parameterType="User" >
+    insert into user (uname,upwd,eid) values (#{uname},#{upwd},#{eid})
+    </insert>
+    <!-- 查询是否用户名被注册 -->
+    <select id="seleuname" parameterType="java.lang.String" resultType="java.lang.String">
+    select uname from user where uname = #{name}
+    </select>
+    
+</mapper>

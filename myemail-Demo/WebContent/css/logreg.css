@@ -1,0 +1,43 @@
+.prompt {
+	width: 200px;
+	/* height: 30px; */
+	line-height: 30px;
+	background: white;
+	position: absolute;
+	font-size: 1.3rem;
+	border-radius: 15px;
+	padding-left: 10px;
+	padding-right: 10px;
+	display: none;
+	text-align: center;
+	overflow: hidden;
+}
+
+@media (max-width: 993px){
+	.prompt-posi{
+		top: 79px;
+		left:200px;
+		width: 400px !important;
+	}
+}
+
+@media (min-width: 992px){
+	.prompt-posi{
+		top: 32px;
+		left: -200px;
+	}
+}
+
+.prompt-red {
+	color: red;
+	display: block;
+}
+
+.prompt-green {
+	color: green;
+	display: block;
+}
+
+.col-md-12 {
+	position: relative;
+}

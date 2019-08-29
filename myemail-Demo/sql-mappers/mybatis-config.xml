@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration 
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+<properties resource="database.properties" /> 
+
+<!-- 配置mybatis的log实现为LOG4] -->
+<settings>
+ <setting name="logImpl" value="LOG4J" />
+ <setting name="autoMappingBehavior" value="FULL" />
+</settings>
+<!-- 配置pojo 类的别名，减少输入多余的包名 -->
+<typeAliases>
+<typeAlias type="cn.beida.ssm.pojo.Emailuser" alias="Emailuser"/>
+<typeAlias type="cn.beida.ssm.pojo.Recordingemail" alias="Recordingemail"/>
+<typeAlias type="cn.beida.ssm.pojo.User" alias="User"/>
+<typeAlias type="cn.beida.ssm.pojo.UserDraft" alias="Draft"/>
+</typeAliases>
+
+<!-- 配置mybatis 多套运行环境心 -->
+<environments default="development">
+<environment id="development">
+<!-- 配置事务管理，采用JDBC的事务管理 -->
+<transactionManager type="JDBC"></transactionManager>
+
+<!-- POOLED-mybatis 自带的数据源，JNDI：基于tomcat的 -->
+<dataSource type="POOLED">
+<property name="driver" value="${driver}" />
+<property name="url" value="${url}" />
+<property name="username" value="${user}" />
+<property name="password" value="${password}" />
+</dataSource>
+</environment>
+</environments>
+
+<mappers>
+ <!-- 告知映射文件方式1，一个一个的配置
+        <mapper resource="com/smbms/mapper/UserMapper.xml"/>-->
+        <!-- 告知映射文件方式2，自动扫描包内的Mapper接口与配置文件 
+<package name="cn/beida/ssm/mapper" />-->
+<mapper resource="cn/beida/ssm/mapper/UserMapper.xml"/>
+<mapper resource="cn/beida/ssm/mapper/EmailuserMapper.xml"/>
+<mapper resource="cn/beida/ssm/mapper/RecordingemailMapper.xml"/>
+<mapper resource="cn/beida/ssm/mapper/UserDraftMapper.xml"/>
+</mappers>
+</configuration>

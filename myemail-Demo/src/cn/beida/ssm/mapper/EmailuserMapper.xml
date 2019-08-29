@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.beida.ssm.dao.Emailusermapper">
+
+    <!-- 查询用户名的邮箱表的ID -->
+     <select id="seleEid" resultType="Emailuser" parameterType="java.lang.String">
+    select * from emailuser where euname = #{name}
+    </select>
+    <!-- 查询是否存在该邮箱 -->
+    <select id="seleEmail" parameterType="java.lang.String" resultType="java.lang.String">
+    select emailstr from emailuser where emailstr = #{email}
+    </select>
+    <!-- 插入数据并返回 -->
+    
+<insert id="addNew"  useGeneratedKeys="true" keyProperty="eid" parameterType= "Emailuser">
+  insert into emailuser(emailstr, euname) values(#{emailstr}, #{euname})
+</insert>
+</mapper>
