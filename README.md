@@ -10,3 +10,5 @@ This is a small project built from the Java foundation and web framework
 ## The required technical
 
 前端:HTML+JS+CSS3+Jquery , 后端: Spring+springMVC+Mybatis, 数据库: Mysql
+
+SSM练习小项目
